@@ -16,7 +16,7 @@ return new class extends Migration
         Schema::create('loan_payments', function (Blueprint $table) {
             $table->id();
             $table->bigInteger('loan_id')->unsigned();
-            $table->decimal('amount',9,3);
+            $table->decimal('amount',10,2);
             $table->timestamps();
         });
 

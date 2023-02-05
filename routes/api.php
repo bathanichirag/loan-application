@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\LoanController;
+use App\Http\Controllers\LoanPaymentController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
@@ -26,4 +27,10 @@ Route::group([
 
     // Routes for Loans
     Route::post('/apply-loan', [LoanController::class, 'applyForLoan']);
+    Route::post('/change-loan-status', [LoanController::class, 'changeLoanStatus']);
+    Route::get('/get-loans', [LoanController::class, 'getLoansList']);
+
+    // Routes for Loan Payments
+    Route::post('/loan-payment', [LoanPaymentController::class, 'payLoan']);
+    Route::get('/get-loan-payments', [LoanPaymentController::class, 'getPaymentDetails']);
 });

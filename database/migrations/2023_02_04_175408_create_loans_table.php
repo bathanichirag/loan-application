@@ -16,11 +16,12 @@ return new class extends Migration
         Schema::create('loans', function (Blueprint $table) {
             $table->id();
             $table->bigInteger('user_id')->unsigned();
-            $table->decimal('amount',9,3);
+            $table->decimal('amount',10,2);
             $table->integer('terms');
             $table->date('start_date')->nullable(true);
-            $table->decimal('remaining_amount',9,3)->nullable(true);
-            $table->decimal('term_amount',9,3)->nullable(true);
+            $table->decimal('remaining_amount',10,2)->nullable(true);
+            $table->decimal('term_amount',10,2)->nullable(true);
+            $table->integer('paid_terms')->default(0);
             $table->enum('status', ['Pending', 'Approved', 'Paid', 'Reject', 'Cancel'])->default('Pending');
             $table->timestamps();
         });
