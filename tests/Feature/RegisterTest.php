@@ -2,12 +2,14 @@
 
 namespace Tests\Feature;
 
-use Illuminate\Foundation\Testing\RefreshDatabase;
+use Illuminate\Foundation\Testing\DatabaseTransactions;
 use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
 
 class RegisterTest extends TestCase
 {
+    use DatabaseTransactions;
+
     public function testRequiredFieldsForRegister()
     {
         $this->json('POST', 'api/register', ['Accept' => 'application/json'])
@@ -21,7 +23,7 @@ class RegisterTest extends TestCase
         ]);
     }
 
-    public function testSuccessfulLogin()
+    public function testSuccessfulRegister()
     {
         $postData = ['name' => 'Test', 'email' => 'test@test.com', 'password' => 'Test@123'];
 
