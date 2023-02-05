@@ -30,26 +30,30 @@ class AuthenticationTest extends TestCase
         ]);
     }
 
-    // public function testSuccessfulLogin()
-    // {
-    //     $this->artisan('passport:client', ['--no-interaction' => true]);
+    public function testSuccessfulLogin()
+    {       
+        $user = User::create([
+           'email' => 'test@test.com',
+           'password' => md5('Test@123'),
+           'name' => 'Test', 
+           'is_admin' => 0,
+        ]);
 
-    //     $user = User::create([
-    //        'email' => 'test@test.com',
-    //        'password' => md5('Test@123'),
-    //        'name' => 'Test', 
-    //        'is_admin' => 0,
-    //     ]);
+        $user->createToken('LOANAPP')->accessToken; 
 
-    //     $loginData = ['email' => 'test@test.com', 'password' => 'Test@123'];
+        $loginData = ['email' => 'test@test.com', 'password' => 'Test@123'];
 
-    //     $this->json('POST', 'api/login', $loginData, ['Accept' => 'application/json'])
-    //         ->assertStatus(200);
-    //         // ->assertJson([
-    //         //     'code' => '200',
-    //         //     'message' => 'Successfully Login',
-    //         // ]);
+        $this->json('POST', 'api/login', $loginData, ['Accept' => 'application/json'])
+            ->assertStatus(200)
+            ->assertJsonStructure([
+                'code',
+                'message',
+                'data' => [
+                    "access_token",
+                    "token_type",
+                    "expires_at",
+                ]
+            ]);
+    }
 
-    //     $this->assertAuthenticated();
-    // }
 }
