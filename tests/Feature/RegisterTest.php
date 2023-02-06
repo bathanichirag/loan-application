@@ -10,6 +10,10 @@ class RegisterTest extends TestCase
 {
     use DatabaseTransactions;
 
+    /**
+     * Function to check validation for register.
+     * @return void
+     */
     public function testRequiredFieldsForRegister()
     {
         $this->json('POST', 'api/register', ['Accept' => 'application/json'])
@@ -23,6 +27,10 @@ class RegisterTest extends TestCase
         ]);
     }
 
+    /**
+     * Function to check validation for register feature.
+     * @return void
+     */
     public function testSuccessfulRegister()
     {
         $postData = ['name' => 'Test', 'email' => 'test@test.com', 'password' => 'Test@123'];

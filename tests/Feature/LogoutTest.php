@@ -12,8 +12,12 @@ class LogoutTest extends PassportTestCase
 {
     use DatabaseTransactions;
 
+    /**
+     * Function to check validation for logout.
+     * @return void
+     */
     public function testSuccessfulLogout()
-    {    
+    {
         $this->getJson('api/logout')
             ->assertStatus(200)
             ->assertJsonStructure([

@@ -11,6 +11,10 @@ use Tests\Feature\PassportTestCase;
 
 class LoanTest extends PassportTestCase
 {
+    /**
+     * Function to check validation for Apply Loan.
+     * @return void
+     */
     public function testRequiredFieldsForApplyLoan()
     {
         $this->postJson('api/apply-loan', ['Accept' => 'application/json'])
@@ -23,6 +27,10 @@ class LoanTest extends PassportTestCase
             ]);
     }
 
+    /**
+     * Function to check apply loan feature.
+     * @return void
+     */
     public function testSuccessfulApplyLoan()
     {
         $user_id = $this->user->id;
@@ -49,6 +57,10 @@ class LoanTest extends PassportTestCase
             ]);
     }
 
+    /**
+     * Function to check validation for change loan status.
+     * @return void
+     */
     public function testRequiredFieldsForChangeLoanStatus()
     {
         $this->postJson('api/change-loan-status', ['Accept' => 'application/json'])
@@ -61,6 +73,10 @@ class LoanTest extends PassportTestCase
             ]);
     }
 
+    /**
+     * Function to check validation change loan status feature.
+     * @return void
+     */
     public function testSuccessfulChangeLoanStatus()
     {
         $user_id = $this->user->id;
@@ -93,6 +109,10 @@ class LoanTest extends PassportTestCase
             ]);
     }
 
+    /**
+     * Function to check validation for get loan list.
+     * @return void
+     */
     public function testRequiredFieldsForGetLoanList()
     {
         $this->getJson('api/get-loans', ['Accept' => 'application/json'])
@@ -105,6 +125,10 @@ class LoanTest extends PassportTestCase
             ]);
     }
 
+    /**
+     * Function to check validation for get loan list.
+     * @return void
+     */
     public function testSuccessfulGetLoanList()
     {
 

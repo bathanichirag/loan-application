@@ -7,10 +7,14 @@ use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
 use App\Models\User;
 
+
 class AuthenticationTest extends TestCase
 {
     use DatabaseTransactions;
 
+    /**
+     * @return void
+     */
     public function setUp(): void {
         parent::setUp();
         \Artisan::call('migrate',['-vvv' => true]);
@@ -18,6 +22,10 @@ class AuthenticationTest extends TestCase
         \Artisan::call('db:seed',['-vvv' => true]);
     }
 
+    /**
+     * Function to check validation for login.
+     * @return void
+     */
     public function testRequiredFieldsForLogin()
     {
         $this->json('POST', 'api/login', ['Accept' => 'application/json'])
@@ -30,16 +38,20 @@ class AuthenticationTest extends TestCase
         ]);
     }
 
+    /**
+     * Function to test login feature.
+     * @return void
+     */
     public function testSuccessfulLogin()
-    {       
+    {
         $user = User::create([
            'email' => 'test@test.com',
            'password' => md5('Test@123'),
-           'name' => 'Test', 
+           'name' => 'Test',
            'is_admin' => 0,
         ]);
 
-        $user->createToken('LOANAPP')->accessToken; 
+        $user->createToken('LOANAPP')->accessToken;
 
         $loginData = ['email' => 'test@test.com', 'password' => 'Test@123'];
 

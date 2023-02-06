@@ -1,8 +1,9 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\LoanPayment;
 
 use App\Helpers\ResponseHelper;
+use App\Http\Controllers\Controller;
 use App\Models\Loan;
 use App\Models\LoanPayment;
 use Illuminate\Http\Request;

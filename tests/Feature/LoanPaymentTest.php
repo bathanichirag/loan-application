@@ -13,6 +13,10 @@ use Tests\Feature\PassportTestCase;
 class LoanPaymentTest extends PassportTestCase
 {
 
+    /**
+     * Function to check validation for pay loan.
+     * @return void
+     */
     public function testRequiredFieldsPayLoan()
     {
         $this->postJson('api/loan-payment', ['Accept' => 'application/json'])
@@ -25,6 +29,10 @@ class LoanPaymentTest extends PassportTestCase
             ]);
     }
 
+    /**
+     * Function to check pay loan feature.
+     * @return void
+     */
     public function testSuccessfulPayLoan()
     {
         $user_id = $this->user->id;
@@ -58,6 +66,10 @@ class LoanPaymentTest extends PassportTestCase
             ]);
     }
 
+    /**
+     * Function to check validation for payment detail list.
+     * @return void
+     */
     public function testRequiredFieldsForGetPaymentDetails()
     {
         $this->getJson('api/get-loan-payments', ['Accept' => 'application/json'])
@@ -71,6 +83,10 @@ class LoanPaymentTest extends PassportTestCase
             ]);
     }
 
+    /**
+     * Function to check get payment detail feature.
+     * @return void
+     */
     public function testSuccessfulGetPaymentDetails()
     {
 
